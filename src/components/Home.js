@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import HeroImg from '../images/vegas-2.jpg';
+import HeroImg from '../images/vegas-4.jpg';
 
 const StyledHero = styled.header`
   width: 100%;

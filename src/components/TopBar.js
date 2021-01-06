@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledTopBar = styled(Link)`
   width: 100%;
   height: 1.75rem;
-  background-color: #0a0bbbbb;
+  background-color: #000880cc;
   color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
