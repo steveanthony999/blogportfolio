@@ -10,7 +10,7 @@ function urlFor(source) {
 }
 
 const SingleBlogPost = () => {
-  const [singlePost, setSinglePost] = useState(null);
+  const [singlePost, setSinglePost] = useState();
   const { slug } = useParams();
 
   useEffect(() => {

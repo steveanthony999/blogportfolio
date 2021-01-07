@@ -34,7 +34,11 @@ export default {
     {
       name: 'publishedAt',
       title: 'Published at',
-      type: 'datetime',
+      type: 'date',
+      options: {
+        dateFormat: 'D MMM. YYYY',
+        calendarTodayLabel: 'Today',
+      },
     },
     {
       name: 'body',

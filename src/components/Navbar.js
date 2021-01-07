@@ -72,7 +72,7 @@ const Navbar = () => {
         </StyledDiv>
         <StyledDiv>
           <StyledLink to='/about'>ABOUT</StyledLink>
-          <StyledLink to='/projects'>PORTFOLIO</StyledLink>
+          <StyledLink to='/portfolio'>PORTFOLIO</StyledLink>
           <StyledLink to='/blog'>BLOG</StyledLink>
           <StyledLink to='/contact'>CONTACT</StyledLink>
         </StyledDiv>

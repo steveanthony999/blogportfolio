@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import sanityClient from '../client.js';
 import { Link } from 'react-router-dom';
 
-const Projects = () => {
+const Portfolio = () => {
   const [postData, setPostData] = useState(null);
 
   useEffect(() => {
@@ -27,13 +27,13 @@ const Projects = () => {
   return (
     <main>
       <section>
-        <h1>Projects Page</h1>
-        <h2>Welcome to my projects page</h2>
+        <h1>Portfolio Page</h1>
+        <h2>Welcome to my portfolio page</h2>
         <div>
           {postData &&
             postData.map((post, index) => (
               <article>
-                <Link to={'/blog/' + post.slug.current} key={post.slug.current}>
+                <Link to={'/portfolio/' + post.slug.current} key={post.slug.current}>
                   <span key={index}>
                     <img src={post.mainImage.asset.url} alt={post.mainImage.alt} />
                     <span>
@@ -49,4 +49,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Portfolio;
