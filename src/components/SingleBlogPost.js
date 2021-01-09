@@ -14,6 +14,8 @@ const SingleBlogPost = () => {
   const { slug } = useParams();
 
   useEffect(() => {
+    let isMounted = true;
+
     sanityClient
       .fetch(
         `*[slug.current == "${slug}"]{
@@ -31,8 +33,12 @@ const SingleBlogPost = () => {
           "authorImage": author->image
       }`
       )
-      .then((data) => setSinglePost(data[0]))
+      .then((data) => (isMounted ? setSinglePost(data[0]) : null))
       .catch(console.error);
+
+    return () => {
+      isMounted = false;
+    };
   }, [slug]);
 
   if (!singlePost) {

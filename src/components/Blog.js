@@ -3,6 +3,9 @@ import sanityClient from '../client.js';
 import imageUrlBuilder from '@sanity/image-url';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import Loading from './Loading';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -24,7 +27,6 @@ const Container = styled.section`
 
 const BlogContainer = styled.div`
   width: 570px;
-  ${'' /* margin-top: 4rem; */}
 `;
 
 const StyledArticle = styled.article`
@@ -43,7 +45,7 @@ const StyledH3 = styled.h3`
   color: var(--dark-grey);
 `;
 
-const AuthorWrapper = styled.div`
+const AuthorDateWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -64,10 +66,24 @@ const StyledParagraph = styled.p`
   color: var(--dark-grey);
 `;
 
+const ReadMoreWrapper = styled.div`
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  color: blue;
+`;
+
+const StyledIcon = styled(FontAwesomeIcon)`
+  margin-left: 1rem;
+`;
+
 const Blog = () => {
   const [postData, setPostData] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     sanityClient
       .fetch(
         `*[_type == "blogPost"] | order(publishedAt desc){
@@ -86,9 +102,17 @@ const Blog = () => {
           publishedAt,
             }`
       )
-      .then((data) => setPostData(data))
+      .then((data) => (isMounted ? setPostData(data) : null))
       .catch(console.error);
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
+
+  if (!postData) {
+    return <Loading />;
+  }
 
   return (
     <MainWrapper>
@@ -99,16 +123,17 @@ const Blog = () => {
               <StyledArticle key={index}>
                 <Link to={'/blog/' + post.slug.current} key={post.slug.current}>
                   <StyledImage src={post.mainImage.asset.url} alt={post.mainImage.alt} />
-                  <span>
-                    <StyledH3>{post.title}</StyledH3>
-                  </span>
-                  <AuthorWrapper>
+                  <StyledH3>{post.title}</StyledH3>
+                  <AuthorDateWrapper>
                     <StyledProfileImage src={urlFor(post.authorImage).url()} alt={post.name} />
                     <StyledP>by {post.name}</StyledP>
                     <StyledP>|</StyledP>
                     <StyledP>{post.publishedAt}</StyledP>
-                  </AuthorWrapper>
+                  </AuthorDateWrapper>
                   <StyledParagraph>{post.body[0].children[0].text.slice(0, 100) + '...'}</StyledParagraph>
+                  <ReadMoreWrapper>
+                    Read more <StyledIcon icon={faArrowCircleRight} />
+                  </ReadMoreWrapper>
                 </Link>
               </StyledArticle>
             ))}

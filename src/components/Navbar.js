@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import Dice from '../images/dice.png';
-
 const StyledNav = styled.nav`
   width: 100%;
   height: 8rem;
@@ -20,10 +18,6 @@ const StyledInnerNav = styled.div`
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const StyledImg = styled.img`
-  width: 40px;
 `;
 
 const StyledSpan = styled.span`
@@ -47,13 +41,48 @@ const StyledLink = styled(NavLink)`
     background: lightgreen;
     margin-left: 3rem;
     padding: 1rem 1rem;
-    border-radius: 5px;
-    box-shadow: 0 5px 5px -1px rgba(0, 0, 100, 0.5);
 
     &:hover {
       background: green;
-      color: #fff;
+      color: var(--white);
       transform: scale(1);
+    }
+  }
+`;
+
+const DiceOutter = styled.div`
+  width: 40px;
+  height: 40px;
+  background: red;
+  border-radius: 12px;
+  position: relative;
+  transform: rotate(45deg);
+
+  & span {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+
+    &:first-child {
+      top: 3px;
+      left: 3px;
+    }
+
+    &:nth-child(2) {
+      top: 3px;
+      right: 3px;
+    }
+
+    &:nth-child(3) {
+      bottom: 3px;
+      left: 3px;
+    }
+
+    &:last-child {
+      bottom: 3px;
+      right: 3px;
     }
   }
 `;
@@ -64,7 +93,12 @@ const Navbar = () => {
       <StyledInnerNav>
         <StyledDiv>
           <NavLink to='/' exact>
-            <StyledImg src={Dice} alt='png' />
+            <DiceOutter>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </DiceOutter>
           </NavLink>
           <NavLink to='/' exact>
             <StyledSpan>Steve.Vegas</StyledSpan>
