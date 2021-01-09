@@ -3,7 +3,6 @@ import sanityClient from '../client.js';
 import imageUrlBuilder from '@sanity/image-url';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import BlockContent from '@sanity/block-content-to-react';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -25,11 +24,12 @@ const Container = styled.section`
 
 const BlogContainer = styled.div`
   width: 570px;
-  margin-top: 4rem;
+  ${'' /* margin-top: 4rem; */}
 `;
 
 const StyledArticle = styled.article`
   width: 100%;
+  margin-top: 6rem;
 `;
 
 const StyledImage = styled.img`
@@ -60,13 +60,17 @@ const StyledP = styled.p`
   margin-left: 1rem;
 `;
 
+const StyledParagraph = styled.p`
+  color: var(--dark-grey);
+`;
+
 const Blog = () => {
   const [postData, setPostData] = useState(null);
 
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "blogPost"]{
+        `*[_type == "blogPost"] | order(publishedAt desc){
                 title,
                 slug,
                 mainImage{
@@ -86,38 +90,25 @@ const Blog = () => {
       .catch(console.error);
   }, []);
 
-  function truncate(str) {
-    let x = str[0].children[0].text.slice(0, 100);
-
-    console.log(x + '...');
-
-    // if (str.length <= 10) {
-    //   return str;
-    // }
-    // return str.slice(0, 10) + '...';
-  }
-
   return (
     <MainWrapper>
       <Container>
         <BlogContainer>
           {postData &&
             postData.map((post, index) => (
-              <StyledArticle>
+              <StyledArticle key={index}>
                 <Link to={'/blog/' + post.slug.current} key={post.slug.current}>
-                  <span key={index}>
-                    <StyledImage src={post.mainImage.asset.url} alt={post.mainImage.alt} />
-                    <span>
-                      <StyledH3>{post.title}</StyledH3>
-                    </span>
-                    <AuthorWrapper>
-                      <StyledProfileImage src={urlFor(post.authorImage).url()} alt={post.name} />
-                      <StyledP>by {post.name}</StyledP>
-                      <StyledP>|</StyledP>
-                      <StyledP>{post.publishedAt}</StyledP>
-                    </AuthorWrapper>
-                    <BlockContent blocks={truncate(post.body)} projectId='579je08z' dataset='production' />
+                  <StyledImage src={post.mainImage.asset.url} alt={post.mainImage.alt} />
+                  <span>
+                    <StyledH3>{post.title}</StyledH3>
                   </span>
+                  <AuthorWrapper>
+                    <StyledProfileImage src={urlFor(post.authorImage).url()} alt={post.name} />
+                    <StyledP>by {post.name}</StyledP>
+                    <StyledP>|</StyledP>
+                    <StyledP>{post.publishedAt}</StyledP>
+                  </AuthorWrapper>
+                  <StyledParagraph>{post.body[0].children[0].text.slice(0, 100) + '...'}</StyledParagraph>
                 </Link>
               </StyledArticle>
             ))}
