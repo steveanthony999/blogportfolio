@@ -27,11 +27,12 @@ const Container = styled.section`
 
 const BlogContainer = styled.div`
   width: 570px;
+  margin-top: 6rem;
 `;
 
 const StyledArticle = styled.article`
   width: 100%;
-  margin-top: 6rem;
+  margin-top: 2rem;
 `;
 
 const StyledImage = styled.img`
@@ -64,6 +65,7 @@ const StyledP = styled.p`
 
 const StyledParagraph = styled.p`
   color: var(--dark-grey);
+  line-height: 1.8rem;
 `;
 
 const ReadMoreWrapper = styled.div`
@@ -76,6 +78,13 @@ const ReadMoreWrapper = styled.div`
 
 const StyledIcon = styled(FontAwesomeIcon)`
   margin-left: 1rem;
+`;
+
+const StyledHr = styled.hr`
+  margin-top: 3rem;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 255, 0));
 `;
 
 const Blog = () => {
@@ -134,6 +143,7 @@ const Blog = () => {
                   <ReadMoreWrapper>
                     Read more <StyledIcon icon={faArrowCircleRight} />
                   </ReadMoreWrapper>
+                  <StyledHr />
                 </Link>
               </StyledArticle>
             ))}
