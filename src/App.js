@@ -11,7 +11,7 @@ import TopBar from './components/TopBar';
 function App() {
   return (
     <Router>
-      <TopBar />
+      {/* <TopBar /> */}
       <Navbar />
       <Switch>
         <Route component={Home} path='/' exact />

@@ -21,14 +21,14 @@ const StyledDiv = styled.div`
 `;
 
 const StyledSpan = styled.span`
-  color: #333;
+  color: var(--white);
   font-family: 'Righteous', cursive;
   font-size: 1.4rem;
   margin-left: 1rem;
 `;
 
 const StyledLink = styled(NavLink)`
-  color: #333;
+  color: var(--white);
   margin-left: 2rem;
   font-weight: 600;
   transition: 0.2s;
@@ -41,6 +41,7 @@ const StyledLink = styled(NavLink)`
     background: lightgreen;
     margin-left: 3rem;
     padding: 1rem 1rem;
+    color: var(--dark-grey);
 
     &:hover {
       background: green;
@@ -53,17 +54,20 @@ const StyledLink = styled(NavLink)`
 const DiceOutter = styled.div`
   width: 40px;
   height: 40px;
-  background: red;
+  background: transparent;
   border-radius: 12px;
   position: relative;
   transform: rotate(45deg);
+  border: 2px solid white;
+  margin-left: 5px;
 
   & span {
-    width: 16px;
-    height: 16px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    background: white;
+    background: transparent;
     position: absolute;
+    border: 2px solid white;
 
     &:first-child {
       top: 3px;
