@@ -23,14 +23,13 @@ const StyledDiv = styled.div`
 `;
 
 const StyledSpan = styled.span`
-  color: var(--white);
+  color: ${(props) => props.textColor};
   font-family: 'Righteous', cursive;
   font-size: 1rem;
   margin-left: 1rem;
 `;
 
 const StyledLink = styled(NavLink)`
-  color: var(--white);
   margin-left: 2rem;
   font-size: 0.8rem;
   font-weight: 400;
@@ -62,7 +61,7 @@ const DiceOutter = styled.div`
   border-radius: 12px;
   position: relative;
   transform: rotate(45deg);
-  border: 2px solid white;
+  border: 2px solid ${(props) => props.textColor};
   margin-left: 5px;
 
   & span {
@@ -71,7 +70,7 @@ const DiceOutter = styled.div`
     border-radius: 50%;
     background: transparent;
     position: absolute;
-    border: 2px solid white;
+    border: 2px solid ${(props) => props.textColor};
 
     &:first-child {
       top: 3px;
@@ -95,13 +94,17 @@ const DiceOutter = styled.div`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ textColor }) => {
+  const navLinkStyle = {
+    color: textColor,
+  };
+
   return (
     <StyledNav>
       <StyledInnerNav>
         <StyledDiv>
           <NavLink to='/' exact>
-            <DiceOutter>
+            <DiceOutter textColor={textColor}>
               <span></span>
               <span></span>
               <span></span>
@@ -109,13 +112,19 @@ const Navbar = () => {
             </DiceOutter>
           </NavLink>
           <NavLink to='/' exact>
-            <StyledSpan>Steve.Vegas</StyledSpan>
+            <StyledSpan textColor={textColor}>Steve.Vegas</StyledSpan>
           </NavLink>
         </StyledDiv>
         <StyledDiv>
-          <StyledLink to='/about'>ABOUT</StyledLink>
-          <StyledLink to='/portfolio'>PORTFOLIO</StyledLink>
-          <StyledLink to='/blog'>BLOG</StyledLink>
+          <StyledLink to='/about' style={navLinkStyle}>
+            ABOUT
+          </StyledLink>
+          <StyledLink to='/portfolio' style={navLinkStyle}>
+            PORTFOLIO
+          </StyledLink>
+          <StyledLink to='/blog' style={navLinkStyle}>
+            BLOG
+          </StyledLink>
           <StyledLink to='/contact'>CONTACT</StyledLink>
         </StyledDiv>
       </StyledInnerNav>

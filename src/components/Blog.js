@@ -87,8 +87,12 @@ const StyledHr = styled.hr`
   background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 255, 0));
 `;
 
-const Blog = () => {
+const Blog = ({ saveNavTextColor }) => {
   const [postData, setPostData] = useState(null);
+
+  useEffect(() => {
+    saveNavTextColor('#000');
+  }, [saveNavTextColor]);
 
   useEffect(() => {
     let isMounted = true;

@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const About = () => {
+const About = ({ saveNavTextColor }) => {
+  useEffect(() => {
+    saveNavTextColor('#000');
+  }, [saveNavTextColor]);
+
   return <div>About</div>;
 };
 

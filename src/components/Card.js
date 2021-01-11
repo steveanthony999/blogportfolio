@@ -57,7 +57,7 @@ const CardLogoBackground = styled.div`
 const SVG = styled.img`
   position: absolute;
   width: 60px;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 `;
 
 const StyledParticles = styled(Particles)`

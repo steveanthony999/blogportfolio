@@ -5,15 +5,13 @@ import Card from '../components/Card';
 
 import BackgroundImg from '../images/vegas.jpg';
 import Guys2 from '../images/guys-2.png';
+import { useEffect } from 'react';
 
 const Main = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  ${'' /* position: absolute; */}
-  ${'' /* top: 0; */}
-  ${'' /* z-index: -1; */}
 `;
 
 const StyledHero = styled.header`
@@ -114,8 +112,6 @@ const HeroWrapper = styled.div`
 
 const HeroImg = styled.img`
   width: 400px;
-  ${'' /* position: relative; */}
-  ${'' /* z-index: 1; */}
 `;
 
 const Paragraph = styled.p`
@@ -134,7 +130,11 @@ const CardWrapper = styled.div`
   margin-top: 42rem;
 `;
 
-const Home = () => {
+const Home = ({ saveNavTextColor }) => {
+  useEffect(() => {
+    saveNavTextColor('#fff');
+  }, [saveNavTextColor]);
+
   return (
     <Main>
       <StyledHero>
