@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ScrollToTop from './ScrollToTop';
 import Home from './components/Home';
 import About from './components/About';
 import SingleBlogPost from './components/SingleBlogPost';
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Navbar textColor={navTextColor} />
       <Switch>
         <Route path='/' exact render={() => <Home saveNavTextColor={saveNavTextColor} />} />
