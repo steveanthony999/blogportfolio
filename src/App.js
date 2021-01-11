@@ -6,12 +6,10 @@ import Blog from './components/Blog';
 import SingleProject from './components/SingleProject';
 import Portfolio from './components/Portfolio';
 import Navbar from './components/Navbar';
-import TopBar from './components/TopBar';
 
 function App() {
   return (
     <Router>
-      {/* <TopBar /> */}
       <Navbar />
       <Switch>
         <Route component={Home} path='/' exact />

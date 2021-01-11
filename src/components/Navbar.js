@@ -6,6 +6,8 @@ const StyledNav = styled.nav`
   height: 8rem;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 `;
 
 const StyledInnerNav = styled.div`
@@ -23,14 +25,15 @@ const StyledDiv = styled.div`
 const StyledSpan = styled.span`
   color: var(--white);
   font-family: 'Righteous', cursive;
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin-left: 1rem;
 `;
 
 const StyledLink = styled(NavLink)`
   color: var(--white);
   margin-left: 2rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 400;
   transition: 0.2s;
 
   &:hover {
@@ -42,6 +45,7 @@ const StyledLink = styled(NavLink)`
     margin-left: 3rem;
     padding: 1rem 1rem;
     color: var(--dark-grey);
+    font-weight: 600;
 
     &:hover {
       background: green;
