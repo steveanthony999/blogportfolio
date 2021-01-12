@@ -1,11 +1,14 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Particles from 'react-particles-js';
+import { motion } from 'framer-motion';
+import { OutlinedButton, SolidButton } from './Buttons';
+
 import Card from '../components/Card';
 
 import BackgroundImg from '../images/vegas.jpg';
 import Guys2 from '../images/guys-2.png';
-import { useEffect } from 'react';
 
 const Main = styled.main`
   width: 100%;
@@ -42,7 +45,7 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const StyledHeader = styled.h1`
+const StyledHeader = styled(motion.h1)`
   font-size: 2.5rem;
   color: #fff;
   margin: 0;
@@ -60,42 +63,10 @@ const ButtonWrapper = styled.div`
   margin-top: 2rem;
 `;
 
-const StyledButton = styled(Link)`
-  width: 200px;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-right: 2rem;
-  padding: 1rem 0;
-  display: flex;
-  justify-content: center;
-  transition: 0.2s;
-  z-index: 12;
-
-  &:first-child {
-    border: 2px solid lightgreen;
-    color: #fff;
-    text-shadow: 0px 0px 5px rgba(55, 0, 0, 1);
-
-    &:hover {
-      background: green;
-      border-color: green;
-    }
-  }
-
-  &:last-child {
-    background: lightgreen;
-    color: #333;
-
-    &:hover {
-      background: green;
-      color: #fff;
-    }
-  }
-`;
-
 const StyledParticles = styled(Particles)`
   position: absolute;
   top: 0;
+  height: 220px;
 `;
 
 const StyledSvg = styled.svg`
@@ -151,8 +122,7 @@ const Home = ({ saveNavTextColor }) => {
                     },
                   },
                   line_linked: {
-                    enable: true,
-                    opacity: 0.02,
+                    enable: false,
                   },
                   move: {
                     speed: 0.05,
@@ -171,7 +141,16 @@ const Home = ({ saveNavTextColor }) => {
               }}
             />
             <HeroWrapper>
-              <StyledHeader>
+              <StyledHeader
+                initial={{ y: '-100vh' }}
+                animate={{ y: 0 }}
+                transition={{
+                  delay: 0.5,
+                  duration: 1.5,
+                  type: 'spring',
+                  stiffness: 150,
+                }}
+              >
                 Modern
                 <StyledSpan>
                   {' '}
@@ -180,16 +159,65 @@ const Home = ({ saveNavTextColor }) => {
                 </StyledSpan>{' '}
                 service
               </StyledHeader>
-              <Paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus, in ultrices dui
-                aliquam.
-              </Paragraph>
+              <motion.div
+                initial={{ x: '-100vw' }}
+                animate={{ x: 0 }}
+                transition={{
+                  delay: 0.5,
+                  duration: 1.5,
+                  type: 'spring',
+                  stiffness: 150,
+                }}
+              >
+                <Paragraph>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus, in ultrices
+                  dui aliquam.
+                </Paragraph>
+              </motion.div>
               <ButtonWrapper>
-                <StyledButton to='/portfolio'>See the Work</StyledButton>
-                <StyledButton to='/contact'>Free Consultation</StyledButton>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    delay: 0.5,
+                    duration: 1.5,
+                  }}
+                >
+                  <Link to='/portfolio'>
+                    <OutlinedButton
+                      text='See the work'
+                      textColor='#fff'
+                      borderHex={'#90ee8f'}
+                      medium
+                      backgroundHexOnHover={'#009900'}
+                    />
+                  </Link>
+                  <Link to='/contact'>
+                    <SolidButton
+                      text='Free Consultation'
+                      textColor='#000000'
+                      textColorOnHover='#fff'
+                      backgroundHex={'#90ee8f'}
+                      borderHex={'#90ee8f'}
+                      medium
+                      backgroundHexOnHover={'#009900'}
+                    />
+                  </Link>
+                </motion.div>
               </ButtonWrapper>
             </HeroWrapper>
-            <HeroImg src={Guys2} alt='' />
+            <motion.div
+              initial={{ rotateY: -90, opacity: 0 }}
+              animate={{ rotateY: 0, opacity: 1 }}
+              transition={{
+                delay: 0.5,
+                duration: 2.5,
+                type: 'spring',
+                stiffness: 150,
+              }}
+            >
+              <HeroImg src={Guys2} alt='' />
+            </motion.div>
           </HeaderWrapper>
         </StyledOverlay>
         <StyledSvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1840 1080'>
@@ -200,27 +228,48 @@ const Home = ({ saveNavTextColor }) => {
         </StyledSvg>
       </StyledHero>
       <CardWrapper>
-        <Card
-          cardImg={'businessSvg'}
-          title='Focus on your business'
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus, in ultrices dui aliquam.'
-          CardLogoBackgroundColor1='#ff0000'
-          CardLogoBackgroundColor2='#ff9900'
-        />
-        <Card
-          cardImg={'ideaSvg'}
-          title='Integrate your ideas'
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus, in ultrices dui aliquam.'
-          CardLogoBackgroundColor1='#0000ff'
-          CardLogoBackgroundColor2='#9900ff'
-        />
-        <Card
-          cardImg={'communicationSvg'}
-          title='Open communication'
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus, in ultrices dui aliquam.'
-          CardLogoBackgroundColor1='#009944'
-          CardLogoBackgroundColor2='#00dd00'
-        />
+        <motion.div
+          initial={{ y: 1000 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.25, duration: 1, type: 'spring', stiffness: 50 }}
+        >
+          <Card
+            cardImg={'businessSvg'}
+            title='Focus on your business'
+            text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus.'
+            CardLogoBackgroundColor1='#ff0000'
+            CardLogoBackgroundColor2='#ff9900'
+            slug={'focus-on-your-business'}
+          />
+        </motion.div>
+        <motion.div
+          initial={{ y: 1000 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.5, duration: 1, type: 'spring', stiffness: 50 }}
+        >
+          <Card
+            cardImg={'ideaSvg'}
+            title='Integrate your ideas'
+            text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus.'
+            CardLogoBackgroundColor1='#0000ff'
+            CardLogoBackgroundColor2='#9900ff'
+            slug={'integrate-your-ideas'}
+          />
+        </motion.div>
+        <motion.div
+          initial={{ y: 1000 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.75, duration: 1, type: 'spring', stiffness: 50 }}
+        >
+          <Card
+            cardImg={'communicationSvg'}
+            title='Open communication'
+            text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus.'
+            CardLogoBackgroundColor1='#009944'
+            CardLogoBackgroundColor2='#00dd00'
+            slug={'open-communication'}
+          />
+        </motion.div>
       </CardWrapper>
     </Main>
   );

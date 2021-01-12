@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -35,10 +36,6 @@ const StyledLink = styled(NavLink)`
   font-weight: 400;
   transition: 0.2s;
 
-  &:hover {
-    transform: scale(1.1);
-  }
-
   &:last-child {
     background: lightgreen;
     margin-left: 3rem;
@@ -49,18 +46,16 @@ const StyledLink = styled(NavLink)`
     &:hover {
       background: green;
       color: var(--white);
-      transform: scale(1);
     }
   }
 `;
 
-const DiceOutter = styled.div`
+const DiceOutter = styled(motion.div)`
   width: 40px;
   height: 40px;
   background: transparent;
   border-radius: 12px;
   position: relative;
-  transform: rotate(45deg);
   border: 2px solid ${(props) => props.textColor};
   margin-left: 5px;
 
@@ -104,7 +99,7 @@ const Navbar = ({ textColor }) => {
       <StyledInnerNav>
         <StyledDiv>
           <NavLink to='/' exact>
-            <DiceOutter textColor={textColor}>
+            <DiceOutter textColor={textColor} initial={{ rotate: 45 }} whileHover={{ rotate: 315 }}>
               <span></span>
               <span></span>
               <span></span>
@@ -117,13 +112,19 @@ const Navbar = ({ textColor }) => {
         </StyledDiv>
         <StyledDiv>
           <StyledLink to='/about' style={navLinkStyle}>
-            ABOUT
+            <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
+              ABOUT
+            </motion.div>
           </StyledLink>
           <StyledLink to='/portfolio' style={navLinkStyle}>
-            PORTFOLIO
+            <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
+              PORTFOLIO
+            </motion.div>
           </StyledLink>
           <StyledLink to='/blog' style={navLinkStyle}>
-            BLOG
+            <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
+              BLOG
+            </motion.div>
           </StyledLink>
           <StyledLink to='/contact'>CONTACT</StyledLink>
         </StyledDiv>

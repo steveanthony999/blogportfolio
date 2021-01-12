@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Particles from 'react-particles-js';
 
@@ -10,12 +11,16 @@ const CardWrapper = styled.div`
   height: 500px;
   background: var(--white);
   box-shadow: 0 15px 35px rgba(0, 0, 100, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
 `;
 
 const CardHeader = styled.div`
   width: 100%;
-  margin: 2rem 0;
+  margin: 1rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,13 +70,35 @@ const StyledParticles = styled(Particles)`
   top: 0;
 `;
 
-const CardBody = styled.div``;
+const CardBody = styled.div`
+  width: 70%;
+  height: 60%;
+`;
 
-const CardTitle = styled.h2``;
+const CardTitle = styled.h2`
+  text-align: center;
+  line-height: 2rem;
+`;
 
-const CardText = styled.p``;
+const CardText = styled.p`
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.6rem;
+`;
 
-const CardFooter = styled.div``;
+const CardFooter = styled.div`
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledLink = styled(Link)`
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: dodgerblue;
+`;
 
 const Card = ({ title, text, CardLogoBackgroundColor1, CardLogoBackgroundColor2, cardImg }) => {
   return (
@@ -124,7 +151,9 @@ const Card = ({ title, text, CardLogoBackgroundColor1, CardLogoBackgroundColor2,
         <CardTitle>{title}</CardTitle>
         <CardText>{text}</CardText>
       </CardBody>
-      <CardFooter></CardFooter>
+      <CardFooter>
+        <StyledLink to='/blog/'>Read more</StyledLink>
+      </CardFooter>
     </CardWrapper>
   );
 };
