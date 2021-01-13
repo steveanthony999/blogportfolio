@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Particles from 'react-particles-js';
+import ReactCardFlip from 'react-card-flip';
 
 import businessSvg from '../images/business.svg';
 import ideaSvg from '../images/idea.svg';
 import communicationSvg from '../images/communication.svg';
+import { useState } from 'react';
 
 const CardWrapper = styled.div`
   width: 330px;
@@ -16,6 +18,10 @@ const CardWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const CardHeader = styled.div`
@@ -101,60 +107,76 @@ const StyledLink = styled(Link)`
 `;
 
 const Card = ({ title, text, CardLogoBackgroundColor1, CardLogoBackgroundColor2, cardImg }) => {
+  const [isCardFlipped, setIsCardFlipped] = useState(false);
+
+  const handleClick = () => {
+    if (isCardFlipped) {
+      setIsCardFlipped(false);
+    } else {
+      setIsCardFlipped(true);
+    }
+  };
+
   return (
-    <CardWrapper>
-      <CardHeader>
-        <StyledParticles
-          params={{
-            particles: {
-              number: {
-                value: 50,
-                density: {
+    <ReactCardFlip isFlipped={isCardFlipped} flipDirection='horizontal' infinite>
+      <CardWrapper onClick={handleClick}>
+        <CardHeader>
+          <StyledParticles
+            params={{
+              particles: {
+                number: {
+                  value: 50,
+                  density: {
+                    enable: true,
+                    value_area: 500,
+                  },
+                },
+                shadow: {
                   enable: true,
-                  value_area: 500,
+                  color: '#3CA9D1',
+                  blur: 1,
+                },
+                move: {
+                  speed: 0.5,
+                },
+                size: {
+                  value: 5,
+                },
+                opacity: {
+                  anim: {
+                    enable: true,
+                    speed: 1,
+                    opacity_min: 0.05,
+                  },
                 },
               },
-              shadow: {
-                enable: true,
-                color: '#3CA9D1',
-                blur: 1,
-              },
-              move: {
-                speed: 0.5,
-              },
-              size: {
-                value: 5,
-              },
-              opacity: {
-                anim: {
-                  enable: true,
-                  speed: 1,
-                  opacity_min: 0.05,
-                },
-              },
-            },
-          }}
-        />
-        <CardLogoBackground color1={CardLogoBackgroundColor1} color2={CardLogoBackgroundColor2} />
-        <SVG
-          src={
-            cardImg === 'businessSvg'
-              ? businessSvg
-              : cardImg === 'ideaSvg'
-              ? ideaSvg
-              : cardImg === 'communicationSvg' && communicationSvg
-          }
-          alt=''
-        />
-      </CardHeader>
-      <CardBody>
-        <CardTitle>{title}</CardTitle>
+            }}
+          />
+          <CardLogoBackground color1={CardLogoBackgroundColor1} color2={CardLogoBackgroundColor2} />
+          <SVG
+            src={
+              cardImg === 'businessSvg'
+                ? businessSvg
+                : cardImg === 'ideaSvg'
+                ? ideaSvg
+                : cardImg === 'communicationSvg' && communicationSvg
+            }
+            alt=''
+          />
+        </CardHeader>
+        <CardBody>
+          <CardTitle>{title}</CardTitle>
+          <CardText>{text}</CardText>
+        </CardBody>
+        <CardFooter>
+          <StyledLink to='/blog/'>Read more</StyledLink>
+        </CardFooter>
+      </CardWrapper>
+
+      <CardWrapper onClick={handleClick}>
         <CardText>{text}</CardText>
-      </CardBody>
-      <CardFooter>
-        <StyledLink to='/blog/'>Read more</StyledLink>
-      </CardFooter>
-    </CardWrapper>
+      </CardWrapper>
+    </ReactCardFlip>
   );
 };
 
