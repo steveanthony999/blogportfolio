@@ -1,6 +1,15 @@
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import styled from 'styled-components';
+
+const Main = styled(motion.main)`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const containerVariants = {
   hidden: {
@@ -18,11 +27,13 @@ const containerVariants = {
 
 const About = () => {
   return (
-    <motion.div variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
-      <Navbar textColor='#000' />
-      About
-      <Footer />
-    </motion.div>
+    <>
+      <Main variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
+        <Navbar textColor='#000' />
+        About
+        <Footer />
+      </Main>
+    </>
   );
 };
 

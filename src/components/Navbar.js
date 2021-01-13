@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 
 const StyledNav = styled(motion.nav)`
   width: 100%;
@@ -103,47 +104,116 @@ const containerVariants = {
   },
 };
 
+// ================================= MOBILE ===================================
+// ================================= MOBILE ===================================
+// ================================= MOBILE ===================================
+
+const MobileNav = styled.nav`
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MobileDice = styled.div`
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border-radius: 12px;
+  position: relative;
+  border: 2px solid ${(props) => props.textColor};
+  margin-left: 5px;
+  transform: rotate(45deg);
+
+  & span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    position: absolute;
+    border: 2px solid ${(props) => props.textColor};
+
+    &:first-child {
+      top: 3px;
+      left: 3px;
+    }
+
+    &:nth-child(2) {
+      top: 3px;
+      right: 3px;
+    }
+
+    &:nth-child(3) {
+      bottom: 3px;
+      left: 3px;
+    }
+
+    &:last-child {
+      bottom: 3px;
+      right: 3px;
+    }
+  }
+`;
+
 const Navbar = ({ textColor }) => {
   const navLinkStyle = {
     color: textColor,
   };
 
+  const isMobile = useMediaQuery({
+    query: '(max-device-width: 414px)',
+  });
+
   return (
-    <StyledNav variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
-      <StyledInnerNav>
-        <StyledDiv>
-          <NavLink to='/' exact>
-            <DiceOutter textColor={textColor} initial={{ rotate: 45 }} whileHover={{ rotate: 315 }}>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </DiceOutter>
-          </NavLink>
-          <NavLink to='/' exact>
-            <StyledSpan textColor={textColor}>Steve.Vegas</StyledSpan>
-          </NavLink>
-        </StyledDiv>
-        <StyledDiv>
-          <StyledLink to='/about' style={navLinkStyle}>
-            <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
-              ABOUT
-            </motion.div>
-          </StyledLink>
-          <StyledLink to='/portfolio' style={navLinkStyle}>
-            <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
-              PORTFOLIO
-            </motion.div>
-          </StyledLink>
-          <StyledLink to='/blog' style={navLinkStyle}>
-            <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
-              BLOG
-            </motion.div>
-          </StyledLink>
-          <StyledLink to='/contact'>CONTACT</StyledLink>
-        </StyledDiv>
-      </StyledInnerNav>
-    </StyledNav>
+    <>
+      {isMobile ? (
+        <MobileNav>
+          <MobileDice textColor={textColor}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </MobileDice>
+        </MobileNav>
+      ) : (
+        <StyledNav variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
+          <StyledInnerNav>
+            <StyledDiv>
+              <NavLink to='/' exact>
+                <DiceOutter textColor={textColor} initial={{ rotate: 45 }} whileHover={{ rotate: 315 }}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </DiceOutter>
+              </NavLink>
+              <NavLink to='/' exact>
+                <StyledSpan textColor={textColor}>Steve.Vegas</StyledSpan>
+              </NavLink>
+            </StyledDiv>
+            <StyledDiv>
+              <StyledLink to='/about' style={navLinkStyle}>
+                <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
+                  ABOUT
+                </motion.div>
+              </StyledLink>
+              <StyledLink to='/portfolio' style={navLinkStyle}>
+                <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
+                  PORTFOLIO
+                </motion.div>
+              </StyledLink>
+              <StyledLink to='/blog' style={navLinkStyle}>
+                <motion.div whileHover={{ scale: 1.4 }} transition={{ type: 'spring', stiffness: 500 }}>
+                  BLOG
+                </motion.div>
+              </StyledLink>
+              <StyledLink to='/contact'>CONTACT</StyledLink>
+            </StyledDiv>
+          </StyledInnerNav>
+        </StyledNav>
+      )}
+    </>
   );
 };
 

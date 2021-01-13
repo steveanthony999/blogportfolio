@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const ButtonOutline = styled(motion.button)`
   width: ${(props) => props.size}px;
   height: 60px;
-  margin-right: 2rem;
+  margin-right: ${(props) => props.marginRight}rem;
   background: transparent;
   border: 2px solid ${(props) => props.borderColor};
   color: ${(props) => props.textColor};
@@ -23,7 +23,7 @@ const ButtonOutline = styled(motion.button)`
 const ButtonSolid = styled(motion.button)`
   width: ${(props) => props.size}px;
   height: 60px;
-  margin-right: 2rem;
+  margin-right: ${(props) => props.marginRight}rem;
   background: ${(props) => props.backgroundHex};
   border: 2px solid ${(props) => props.borderColor};
   color: ${(props) => props.textColor};
@@ -40,13 +40,24 @@ const ButtonSolid = styled(motion.button)`
   }
 `;
 
-export const OutlinedButton = ({ text, textColor, borderHex, backgroundHexOnHover, small, medium, large, xlarge }) => {
+export const OutlinedButton = ({
+  text,
+  textColor,
+  borderHex,
+  backgroundHexOnHover,
+  small,
+  medium,
+  large,
+  xlarge,
+  marginRight,
+}) => {
   return (
     <ButtonOutline
       borderColor={borderHex}
       backgroundHexOnHover={backgroundHexOnHover}
       textColor={textColor}
       size={small ? 100 : medium ? 200 : large ? 300 : xlarge && 400}
+      marginRight={marginRight}
       whileHover={{ scale: 1.2 }}
       transition={{ type: 'spring', stiffness: 500 }}
     >
@@ -66,6 +77,7 @@ export const SolidButton = ({
   medium,
   large,
   xlarge,
+  marginRight,
 }) => {
   return (
     <ButtonSolid
@@ -75,6 +87,7 @@ export const SolidButton = ({
       textColorOnHover={textColorOnHover}
       backgroundHexOnHover={backgroundHexOnHover}
       size={small ? 100 : medium ? 200 : large ? 300 : xlarge && 400}
+      marginRight={marginRight}
       whileHover={{ scale: 1.2 }}
       transition={{ type: 'spring', stiffness: 500 }}
     >

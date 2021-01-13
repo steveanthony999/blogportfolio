@@ -15,7 +15,7 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-const MainWrapper = styled(motion.main)`
+const Main = styled(motion.main)`
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -143,7 +143,7 @@ const Blog = () => {
   return (
     <>
       <Navbar textColor='#000' />
-      <MainWrapper variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
+      <Main variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
         <Container>
           <BlogContainer>
             {postData &&
@@ -168,7 +168,7 @@ const Blog = () => {
               ))}
           </BlogContainer>
         </Container>
-      </MainWrapper>
+      </Main>
       <Footer />
     </>
   );
