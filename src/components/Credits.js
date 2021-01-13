@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import CreditsImg from '../images/credits.svg';
 import CreditsCard from './CreditsCard';
+import { motion } from 'framer-motion';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
-const Main = styled.main`
+const Main = styled(motion.main)`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -27,13 +29,24 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Credits = ({ saveNavTextColor }) => {
-  useEffect(() => {
-    saveNavTextColor('#000');
-  }, [saveNavTextColor]);
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.5, duration: 0.5 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { ease: 'easeInOut' },
+  },
+};
 
+const Credits = () => {
   return (
-    <Main>
+    <Main variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
+      <Navbar textColor='#000' />
       <Container>
         <Heading>BIG SHOUTS TO THESE FOLKS</Heading>
         <Paragraph>
@@ -77,6 +90,7 @@ const Credits = ({ saveNavTextColor }) => {
           url={'https://www.freepik.com/vectors/business'}
         />
       </Container>
+      <Footer />
     </Main>
   );
 };

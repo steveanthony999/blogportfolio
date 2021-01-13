@@ -1,16 +1,17 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Particles from 'react-particles-js';
 import { motion } from 'framer-motion';
 import { OutlinedButton, SolidButton } from './Buttons';
 
-import Card from '../components/Card';
+import Navbar from './Navbar';
+import Card from './Card';
 
 import BackgroundImg from '../images/vegas.jpg';
 import Guys2 from '../images/guys-2.png';
+import Footer from './Footer';
 
-const Main = styled.main`
+const Main = styled(motion.main)`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,14 +34,12 @@ const StyledOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${'' /* position: relative; */}
 `;
 
 const HeaderWrapper = styled.div`
   width: 1100px;
   margin-top: -200px;
   display: flex;
-  ${'' /* flex-direction: column; */}
   align-items: center;
   justify-content: space-between;
 `;
@@ -101,13 +100,24 @@ const CardWrapper = styled.div`
   margin-top: 42rem;
 `;
 
-const Home = ({ saveNavTextColor }) => {
-  useEffect(() => {
-    saveNavTextColor('#fff');
-  }, [saveNavTextColor]);
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.5, duration: 0.5 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { ease: 'easeInOut' },
+  },
+};
 
+const Home = () => {
   return (
-    <Main>
+    <Main variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
+      <Navbar textColor={'#fff'} />
       <StyledHero>
         <StyledOverlay>
           <HeaderWrapper>
@@ -271,6 +281,7 @@ const Home = ({ saveNavTextColor }) => {
           />
         </motion.div>
       </CardWrapper>
+      <Footer />
     </Main>
   );
 };

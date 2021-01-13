@@ -6,13 +6,16 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
 import Loading from './Loading';
+import { motion } from 'framer-motion';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 
-const MainWrapper = styled.main`
+const MainWrapper = styled(motion.main)`
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -87,12 +90,22 @@ const StyledHr = styled.hr`
   background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 255, 0));
 `;
 
-const Blog = ({ saveNavTextColor }) => {
-  const [postData, setPostData] = useState(null);
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.5, duration: 0.5 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { ease: 'easeInOut' },
+  },
+};
 
-  useEffect(() => {
-    saveNavTextColor('#000');
-  }, [saveNavTextColor]);
+const Blog = () => {
+  const [postData, setPostData] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -128,32 +141,36 @@ const Blog = ({ saveNavTextColor }) => {
   }
 
   return (
-    <MainWrapper>
-      <Container>
-        <BlogContainer>
-          {postData &&
-            postData.map((post, index) => (
-              <StyledArticle key={index}>
-                <Link to={'/blog/' + post.slug.current} key={post.slug.current}>
-                  <StyledImage src={post.mainImage.asset.url} alt={post.mainImage.alt} />
-                  <StyledH3>{post.title}</StyledH3>
-                  <AuthorDateWrapper>
-                    <StyledProfileImage src={urlFor(post.authorImage).url()} alt={post.name} />
-                    <StyledP>by {post.name}</StyledP>
-                    <StyledP>|</StyledP>
-                    <StyledP>{post.publishedAt}</StyledP>
-                  </AuthorDateWrapper>
-                  <StyledParagraph>{post.body[0].children[0].text.slice(0, 100) + '...'}</StyledParagraph>
-                  <ReadMoreWrapper>
-                    Read more <StyledIcon icon={faArrowCircleRight} />
-                  </ReadMoreWrapper>
-                  <StyledHr />
-                </Link>
-              </StyledArticle>
-            ))}
-        </BlogContainer>
-      </Container>
-    </MainWrapper>
+    <>
+      <Navbar textColor='#000' />
+      <MainWrapper variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
+        <Container>
+          <BlogContainer>
+            {postData &&
+              postData.map((post, index) => (
+                <StyledArticle key={index}>
+                  <Link to={'/blog/' + post.slug.current} key={post.slug.current}>
+                    <StyledImage src={post.mainImage.asset.url} alt={post.mainImage.alt} />
+                    <StyledH3>{post.title}</StyledH3>
+                    <AuthorDateWrapper>
+                      <StyledProfileImage src={urlFor(post.authorImage).url()} alt={post.name} />
+                      <StyledP>by {post.name}</StyledP>
+                      <StyledP>|</StyledP>
+                      <StyledP>{post.publishedAt}</StyledP>
+                    </AuthorDateWrapper>
+                    <StyledParagraph>{post.body[0].children[0].text.slice(0, 100) + '...'}</StyledParagraph>
+                    <ReadMoreWrapper>
+                      Read more <StyledIcon icon={faArrowCircleRight} />
+                    </ReadMoreWrapper>
+                    <StyledHr />
+                  </Link>
+                </StyledArticle>
+              ))}
+          </BlogContainer>
+        </Container>
+      </MainWrapper>
+      <Footer />
+    </>
   );
 };
 

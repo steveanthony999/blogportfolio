@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-const StyledNav = styled.nav`
+const StyledNav = styled(motion.nav)`
   width: 100%;
   height: 8rem;
   display: flex;
@@ -89,13 +89,27 @@ const DiceOutter = styled(motion.div)`
   }
 `;
 
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.5, duration: 0.5 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { ease: 'easeInOut' },
+  },
+};
+
 const Navbar = ({ textColor }) => {
   const navLinkStyle = {
     color: textColor,
   };
 
   return (
-    <StyledNav>
+    <StyledNav variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
       <StyledInnerNav>
         <StyledDiv>
           <NavLink to='/' exact>
