@@ -123,20 +123,24 @@ const MainMobile = styled.main`
   width: 100%;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 255, 0.5), rgba(100, 40, 200, 0.95));
+  ${'' /* display: flex; */}
+  ${'' /* flex-direction: column; */}
 `;
 
 const MainContainer = styled.div`
   width: 100%;
   height: 100%;
+  margin-top: -64px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
+  ${'' /* align-items: center; */}
 `;
 
 const MobileHeroContainer = styled.div`
   width: 100%;
   min-height: 50%;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -144,16 +148,11 @@ const MobileHeroContainer = styled.div`
 `;
 
 const MobileHeader = styled.h1`
-  font-size: 1rem;
+  font-size: ${(props) => props.fontSize}rem;
+  line-height: ${(props) => props.lineHeight}rem;
   color: #fff;
-  margin: 0;
-  text-align: center;
-  line-height: 2rem;
+  margin: 0 1rem;
   text-transform: uppercase;
-`;
-
-const MobileHeroImg = styled.img`
-  width: 200px;
 `;
 
 const MobileParagraph = styled.p`
@@ -181,34 +180,29 @@ const Home = () => {
     query: '(max-device-width: 414px)',
   });
 
+  const isMobileSmall = useMediaQuery({
+    query: '(max-device-width: 374px)',
+  });
+
+  const isMobileMedium = useMediaQuery({
+    query: '(min-device-width: 375px) and (max-device-width:413px)',
+  });
+
   return (
     <>
       {isMobile ? (
         <MainMobile>
+          <Navbar textColor={'#fff'} />
           <MainContainer>
-            <Navbar textColor={'#fff'} />
             <MobileHeroContainer>
-              <MobileHeader>
-                Modern web solutions,
-                <br /> Old school service
+              <MobileHeader
+                fontSize={isMobileSmall ? 2.6 : isMobileMedium ? 3.2 : 3.5}
+                lineHeight={isMobileSmall ? 3.2 : isMobileMedium ? 4 : 5}
+              >
+                Modern web solutions, Old school service
               </MobileHeader>
-              <MobileHeroImg src={Guys2} alt='' />
-              <MobileParagraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus, in ultrices dui
-                aliquam.
-              </MobileParagraph>
             </MobileHeroContainer>
             <MobileButtonContainer>
-              <Link to='/portfolio'>
-                <OutlinedButton
-                  text='See the work'
-                  textColor='#fff'
-                  borderHex={'#90ee8f'}
-                  large
-                  backgroundHexOnHover={'#009900'}
-                  marginRight={0}
-                />
-              </Link>
               <Link to='/contact'>
                 <SolidButton
                   text='Free Consultation'
@@ -216,7 +210,7 @@ const Home = () => {
                   textColorOnHover='#fff'
                   backgroundHex={'#90ee8f'}
                   borderHex={'#90ee8f'}
-                  large
+                  medium
                   backgroundHexOnHover={'#009900'}
                   marginRight={0}
                 />
