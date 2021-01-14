@@ -123,18 +123,15 @@ const MainMobile = styled.main`
   width: 100%;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 255, 0.5), rgba(100, 40, 200, 0.95));
-  ${'' /* display: flex; */}
-  ${'' /* flex-direction: column; */}
 `;
 
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
   width: 100%;
   height: 100%;
   margin-top: -64px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  ${'' /* align-items: center; */}
 `;
 
 const MobileHeroContainer = styled.div`
@@ -193,7 +190,16 @@ const Home = () => {
       {isMobile ? (
         <MainMobile>
           <Navbar textColor={'#fff'} />
-          <MainContainer>
+          <MainContainer
+            initial={{ x: '100vw' }}
+            animate={{ x: 0 }}
+            transition={{
+              delay: 0.5,
+              duration: 1.5,
+              type: 'spring',
+              stiffness: 150,
+            }}
+          >
             <MobileHeroContainer>
               <MobileHeader
                 fontSize={isMobileSmall ? 2.6 : isMobileMedium ? 3.2 : 3.5}
