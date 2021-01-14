@@ -20,7 +20,7 @@ const Main = styled(motion.main)`
   align-items: center;
 `;
 
-const StyledHero = styled.header`
+const StyledHero = styled(motion.header)`
   width: 100%;
   height: 1100px;
   background: url(${BackgroundImg}) no-repeat top center/cover;
@@ -290,7 +290,7 @@ const Home = () => {
                     initial={{ y: '-100vh' }}
                     animate={{ y: 0 }}
                     transition={{
-                      delay: 0.5,
+                      delay: 1.5,
                       duration: 1.5,
                       type: 'spring',
                       stiffness: 150,
@@ -308,7 +308,7 @@ const Home = () => {
                     initial={{ x: '-100vw' }}
                     animate={{ x: 0 }}
                     transition={{
-                      delay: 0.5,
+                      delay: 1.5,
                       duration: 1.5,
                       type: 'spring',
                       stiffness: 150,
@@ -324,7 +324,7 @@ const Home = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{
-                        delay: 0.5,
+                        delay: 1.5,
                         duration: 1.5,
                       }}
                     >
@@ -357,7 +357,7 @@ const Home = () => {
                   initial={{ rotateY: -90, opacity: 0 }}
                   animate={{ rotateY: 0, opacity: 1 }}
                   transition={{
-                    delay: 0.5,
+                    delay: 1.5,
                     duration: 2.5,
                     type: 'spring',
                     stiffness: 150,
@@ -378,7 +378,7 @@ const Home = () => {
             <motion.div
               initial={{ y: 1000 }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.25, duration: 1, type: 'spring', stiffness: 50 }}
+              transition={{ delay: 1.25, duration: 1, type: 'spring', stiffness: 50 }}
             >
               <Card
                 cardImg={'businessSvg'}
@@ -392,7 +392,7 @@ const Home = () => {
             <motion.div
               initial={{ y: 1000 }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.5, duration: 1, type: 'spring', stiffness: 50 }}
+              transition={{ delay: 1.5, duration: 1, type: 'spring', stiffness: 50 }}
             >
               <Card
                 cardImg={'ideaSvg'}
@@ -406,7 +406,7 @@ const Home = () => {
             <motion.div
               initial={{ y: 1000 }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.75, duration: 1, type: 'spring', stiffness: 50 }}
+              transition={{ delay: 1.75, duration: 1, type: 'spring', stiffness: 50 }}
             >
               <Card
                 cardImg={'communicationSvg'}
