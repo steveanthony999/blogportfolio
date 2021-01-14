@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
+import Hamburger from './Hamburger';
 
 const StyledNav = styled(motion.nav)`
   width: 100%;
@@ -112,8 +113,11 @@ const MobileNav = styled.nav`
   width: 100%;
   height: 4rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  ${'' /* position: fixed;
+  top: 0;
+  z-index: 10; */}
 `;
 
 const MobileDice = styled.div`
@@ -123,7 +127,7 @@ const MobileDice = styled.div`
   border-radius: 12px;
   position: relative;
   border: 2px solid ${(props) => props.textColor};
-  margin-left: 5px;
+  margin-left: 1rem;
   transform: rotate(45deg);
 
   & span {
@@ -175,6 +179,7 @@ const Navbar = ({ textColor }) => {
             <span></span>
             <span></span>
           </MobileDice>
+          <Hamburger />
         </MobileNav>
       ) : (
         <StyledNav variants={containerVariants} initial='hidden' animate='visible' exit='exit'>
