@@ -93,6 +93,7 @@ const Paragraph = styled.p`
   line-height: 2rem;
   margin-top: 2rem;
   z-index: 3;
+  letter-spacing: 1.2px;
 `;
 
 const CardWrapper = styled.div`
@@ -314,9 +315,10 @@ const Home = () => {
                       stiffness: 150,
                     }}
                   >
+                    {/* No cookie cutter services here. */}
                     <Paragraph>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus, in
-                      ultrices dui aliquam.
+                      A full service web shop that uses the latest and greatest technologies to provide your business
+                      with a modern and effective online presence.{' '}
                     </Paragraph>
                   </motion.div>
                   <ButtonWrapper>
@@ -383,7 +385,7 @@ const Home = () => {
               <Card
                 cardImg={'businessSvg'}
                 title='Focus on your business'
-                text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus.'
+                text='Fumbling around with all of the available online tools can be a huge hassle. Let us focus on your online needs while you focus on your business.'
                 CardLogoBackgroundColor1='#ff0000'
                 CardLogoBackgroundColor2='#ff9900'
                 slug={'focus-on-your-business'}
@@ -397,7 +399,7 @@ const Home = () => {
               <Card
                 cardImg={'ideaSvg'}
                 title='Integrate your ideas'
-                text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus.'
+                text="Sometimes inspiration strikes in the middle of the night, in the shower, or on the road. Whatever magic comes to you, let's incorporate it into your strategy."
                 CardLogoBackgroundColor1='#0000ff'
                 CardLogoBackgroundColor2='#9900ff'
                 slug={'integrate-your-ideas'}
@@ -411,7 +413,7 @@ const Home = () => {
               <Card
                 cardImg={'communicationSvg'}
                 title='Open communication'
-                text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultrices lectus.'
+                text='Professional, personal, and present. No automated emails or chat bots. When you want to talk, we talk! Keeping an open dialogue with you is the highest of our priorities.'
                 CardLogoBackgroundColor1='#009944'
                 CardLogoBackgroundColor2='#00dd00'
                 slug={'open-communication'}
