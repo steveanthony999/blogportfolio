@@ -6,6 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import Navbar from './Navbar';
 import Card from './Card';
+import WhySection from './WhySection';
 
 import { OutlinedButton, SolidButton } from './Buttons';
 
@@ -420,6 +421,7 @@ const Home = () => {
               />
             </motion.div>
           </CardWrapper>
+          <WhySection />
           <Footer />
         </Main>
       )}
