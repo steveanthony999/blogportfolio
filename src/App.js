@@ -30,8 +30,8 @@ function App() {
         </div>
       ) : (
         <div>
-          <ScrollToTop />
           <AnimatePresence exitBeforeEnter>
+            <ScrollToTop />
             <Switch location={location} key={location.key}>
               <Route path='/' exact render={() => <Home />} />
               <Route path='/about' render={() => <About />} />

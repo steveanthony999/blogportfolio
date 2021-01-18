@@ -21,14 +21,15 @@ const StyledHeader = styled.h2`
   font-size: 2rem;
   color: var(--dark-grey);
   margin: 0;
+  margin-bottom: 2rem;
 `;
 
 const Paragraph = styled.p`
   width: 400px;
   font-size: 0.95rem;
   color: var(--dark-grey);
-  line-height: 2rem;
-  margin-top: 2rem;
+  line-height: 1.8rem;
+  ${'' /* margin-top: 2rem; */}
   ${'' /* z-index: 3; */}
   letter-spacing: 1.2px;
 `;
@@ -40,12 +41,18 @@ const MiniContainer = styled.div`
 const Card = styled.div`
   width: 100%;
   height: 200px;
+  margin-top: 1rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const CardLeft = styled.div`
   width: 25%;
-  background: green;
+  height: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 const CardRight = styled.div`
@@ -57,14 +64,28 @@ const CardRight = styled.div`
 
 const CardRightHeader = styled.div`
   width: 100%;
-  height: 20%;
-  background: red;
 `;
 
 const CardRightBody = styled.div`
   width: 100%;
-  height: 80%;
-  background: blue;
+`;
+
+const SVGContainer = styled.div`
+  width: 100px;
+  height: 100px;
+  background: rgba(80, 0, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SVG = styled.img`
+  width: 40px;
+`;
+
+const CardHeaderText = styled.h3`
+  margin: 0;
 `;
 
 const WhySection = () => {
@@ -80,12 +101,12 @@ const WhySection = () => {
           <Link to='/contact'>
             <SolidButton
               text='Get Started'
-              textColor='#000000'
+              textColor='#fff'
               textColorOnHover='#fff'
-              backgroundHex={'#90ee8f'}
-              borderHex={'#90ee8f'}
+              backgroundHex={'#6207ff'}
+              borderHex={'#6207ff'}
               medium
-              backgroundHexOnHover={'#009900'}
+              backgroundHexOnHover={'#6207dd'}
               marginRight={0}
             />
           </Link>
@@ -93,10 +114,57 @@ const WhySection = () => {
       </Container>
       <Container width={55}>
         <Card>
-          <CardLeft></CardLeft>
+          <CardLeft>
+            <SVGContainer>
+              <SVG src={DesignImg} alt='' />
+            </SVGContainer>
+          </CardLeft>
           <CardRight>
-            <CardRightHeader></CardRightHeader>
-            <CardRightBody></CardRightBody>
+            <CardRightHeader>
+              <CardHeaderText>Web Design</CardHeaderText>
+            </CardRightHeader>
+            <CardRightBody>
+              <Paragraph>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam consectetur dolorem rem nostrum! Ea
+                voluptates quaerat ratione? Velit, earum consequatur!
+              </Paragraph>
+            </CardRightBody>
+          </CardRight>
+        </Card>
+        <Card>
+          <CardLeft>
+            <SVGContainer>
+              <SVG src={SeoImg} alt='' />
+            </SVGContainer>
+          </CardLeft>
+          <CardRight>
+            <CardRightHeader>
+              <CardHeaderText>Seo</CardHeaderText>
+            </CardRightHeader>
+            <CardRightBody>
+              <Paragraph>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam consectetur dolorem rem nostrum! Ea
+                voluptates quaerat ratione? Velit, earum consequatur!
+              </Paragraph>
+            </CardRightBody>
+          </CardRight>
+        </Card>
+        <Card>
+          <CardLeft>
+            <SVGContainer>
+              <SVG src={MarketingImg} alt='' />
+            </SVGContainer>
+          </CardLeft>
+          <CardRight>
+            <CardRightHeader>
+              <CardHeaderText>Digital Marketing</CardHeaderText>
+            </CardRightHeader>
+            <CardRightBody>
+              <Paragraph>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam consectetur dolorem rem nostrum! Ea
+                voluptates quaerat ratione? Velit, earum consequatur!
+              </Paragraph>
+            </CardRightBody>
           </CardRight>
         </Card>
       </Container>
